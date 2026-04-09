@@ -1,12 +1,14 @@
 # DeepFakeShield
 
-<img src="https://img.shields.io/badge/Python-3.11-blue.svg" alt="Python">
-<img src="https://img.shields.io/badge/FastAPI-0.104-009688.svg" alt="FastAPI">
-<img src="https://img.shields.io/badge/PyTorch-2.x-EE4C2C.svg" alt="PyTorch">
-<img src="https://img.shields.io/badge/React-19-61DAFB.svg" alt="React">
-<img src="https://img.shields.io/badge/Vite-7.x-646CFF.svg" alt="Vite">
-<img src="https://img.shields.io/badge/License-MIT-green.svg" alt="License">
-<img src="https://img.shields.io/badge/Project-FYP%202026-orange.svg" alt="Status">
+<p align="left">
+	<img src="https://img.shields.io/badge/Python-3.11-blue.svg" alt="Python">
+	<img src="https://img.shields.io/badge/FastAPI-0.104-009688.svg" alt="FastAPI">
+	<img src="https://img.shields.io/badge/PyTorch-2.x-EE4C2C.svg" alt="PyTorch">
+	<img src="https://img.shields.io/badge/React-19-61DAFB.svg" alt="React">
+	<img src="https://img.shields.io/badge/Vite-7.x-646CFF.svg" alt="Vite">
+	<img src="https://img.shields.io/badge/License-MIT-green.svg" alt="License">
+	<img src="https://img.shields.io/badge/Project-FYP%202026-orange.svg" alt="Status">
+</p>
 
 DeepFakeShield is an AI-powered image forensics platform that detects manipulated and AI-generated face images using deep learning.
 It combines a React frontend, FastAPI backend, and a PyTorch inference pipeline for real-time classification.
@@ -38,6 +40,13 @@ It combines a React frontend, FastAPI backend, and a PyTorch inference pipeline 
 - Monitoring dashboards (latency, confidence drift, throughput)
 - Adversarial robustness and out-of-distribution checks
 - API rate limiting and production hardening
+
+## UI Preview
+
+<p align="center">
+	<img src="./frontend_preview1.png" alt="DeepFakeShield Frontend Preview 1" width="48%">
+	<img src="./frontend_preview2.png" alt="DeepFakeShield Frontend Preview 2" width="48%">
+</p>
 
 ## UI + Full Technical Diagram
 
@@ -101,7 +110,7 @@ flowchart LR
 
 ## Project Status
 
-Active Final Year Project (2026), currently focused on improving robustness, explainability, and deployment readiness.
+Active Project (2026), currently focused on improving robustness, explainability, and deployment readiness.
 
 ## Responsible Use
 
