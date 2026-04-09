@@ -6,7 +6,7 @@
 	<img src="https://img.shields.io/badge/PyTorch-2.x-EE4C2C.svg" alt="PyTorch">
 	<img src="https://img.shields.io/badge/React-19-61DAFB.svg" alt="React">
 	<img src="https://img.shields.io/badge/Vite-7.x-646CFF.svg" alt="Vite">
-	<img src="https://img.shields.io/badge/License-MIT-green.svg" alt="License">
+	<img src="https://img.shields.io/badge/License-All%20Rights%20Reserved-red.svg" alt="License">
 	<img src="https://img.shields.io/badge/Project-FYP%202026-orange.svg" alt="Status">
 </p>
 
@@ -119,4 +119,5 @@ Model outputs are probabilistic and may vary across unseen generators or highly 
 
 ## License
 
-MIT License (or replace with your preferred license).
+All Rights Reserved.
+No permission is granted to use, copy, modify, or distribute this code without explicit written consent from the author.
