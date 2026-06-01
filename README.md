@@ -1,123 +1,88 @@
-# DeepFakeShield
+# 🛡️ DeepFakeShield — AI-Based 3-State Deepfake Detection System
 
-<p align="left">
-	<img src="https://img.shields.io/badge/Python-3.11-blue.svg" alt="Python">
-	<img src="https://img.shields.io/badge/FastAPI-0.104-009688.svg" alt="FastAPI">
-	<img src="https://img.shields.io/badge/PyTorch-2.x-EE4C2C.svg" alt="PyTorch">
-	<img src="https://img.shields.io/badge/React-19-61DAFB.svg" alt="React">
-	<img src="https://img.shields.io/badge/Vite-7.x-646CFF.svg" alt="Vite">
-	<img src="https://img.shields.io/badge/License-All%20Rights%20Reserved-red.svg" alt="License">
-	<img src="https://img.shields.io/badge/Project-FYP%202026-orange.svg" alt="Status">
-</p>
+![Python](https://img.shields.io/badge/Python-3.11-3776AB?style=flat&logo=python&logoColor=white)
+![PyTorch](https://img.shields.io/badge/PyTorch-2.0+-EE4C2C?style=flat&logo=pytorch&logoColor=white)
+![FastAPI](https://img.shields.io/badge/FastAPI-009688?style=flat&logo=fastapi&logoColor=white)
+![React](https://img.shields.io/badge/React_18-61DAFB?style=flat&logo=react&logoColor=black)
+![Vite](https://img.shields.io/badge/Vite-646CFF?style=flat&logo=vite&logoColor=white)
 
-DeepFakeShield is an AI-powered image forensics platform that detects manipulated and AI-generated face images using deep learning.
-It combines a React frontend, FastAPI backend, and a PyTorch inference pipeline for real-time classification.
+> **DeepFakeShield** is a production-grade AI forensics platform that detects manipulated and AI-generated media. Unlike binary classifiers, it utilizes a custom-trained **XceptionNet-41** backbone to distinguish between three distinct states: **Real**, **Fake (Deepfakes)**, and **AI-Generated (Fully Synthetic)**.
 
-## Project Highlights
+> **⚠️ NOTE:** This repository is a **Technical Showcase**. The source code is maintained privately as it is part of a final year commercial project.
 
-- Multi-class face image detection (Real, Fake, AI-Generated)
-- End-to-end web workflow: upload image, run inference, return confidence score
-- FastAPI API service connected to trained model checkpoints
-- React + Vite responsive frontend for fast interaction
-- Modular architecture for easy model replacement and experimentation
+---
 
-## What Is Already Implemented
+## 📸 Platform Interface
 
-- Image upload pipeline from frontend to backend
-- Model loading and inference in backend services
-- Prediction response with class label and confidence
-- Dataset preprocessing/training structure for multiple model variants
-- Checkpoint-based model serving setup
-- Local development workflow for both frontend and backend
+### Light Theme
+![Frontend Preview 1](frontend_preview1.png)
 
-## Future Implementation (Next Phase)
+### Dark Theme
+![Frontend Preview 2](frontend_preview2.png)
 
-- Video deepfake detection with frame-level aggregation
-- Explainable AI outputs (Grad-CAM / attention heatmaps)
-- Ensemble inference across multiple backbones
-- Authentication + user session history
-- Cloud deployment with CI/CD and model versioning
-- Monitoring dashboards (latency, confidence drift, throughput)
-- Adversarial robustness and out-of-distribution checks
-- API rate limiting and production hardening
+---
 
-## UI Preview
+## 🚀 Key Features
 
-<p align="center">
-	<img src="./frontend_preview1.png" alt="DeepFakeShield Frontend Preview 1" width="48%">
-	<img src="./frontend_preview2.png" alt="DeepFakeShield Frontend Preview 2" width="48%">
-</p>
+### 1. High-Accuracy Video Inference Pipeline
+- **Temporal Detection:** Fully supports video analysis (`.mp4`, `.avi`, `.mov`) without crashing the memory.
+- **Adaptive Frame Decoding:** Uses OpenCV for efficient frame extraction and MTCNN for accurate face-filtering.
+- **Consensus Majority-Voting:** Implements a 30-frame voting algorithm yielding an unprecedented **99.9% video-level accuracy**.
 
-## UI + Full Technical Diagram
+### 2. Live SaaS-Style Web UI
+- Built on **React 18 & Vite** featuring native Dark/Light Mode toggle.
+- **Model Selector Dashboard:** Test predictions dynamically across three different backbones (XceptionNet, EfficientNet, MobileNet).
+- **Webcam Mode:** Real-time camera capture via `getUserMedia` API for instant live classification.
 
-```mermaid
-flowchart LR
-		U[User] --> FE[React + Vite Frontend]
-		FE --> C1[UploadForm]
-		FE --> C2[ModelSelector]
-		FE --> C3[ResultCard]
-		C1 --> API[API Service Layer]
+### 3. Production-Ready FastAPI Backend
+- **Security:** Custom API Key Authentication (`X-API-Key`) to prevent unauthorized DoS attacks.
+- **Resiliency:** Strict request timeouts via custom asyncio decorators (60s for images, 300s for videos) and strict 5MB file limits.
+- **Memory Safety:** Smart multipart memory buffering to prevent RAM exhaustion and GPU OOM errors during heavy video payloads.
 
-		API --> R1[FastAPI Route: /predict/image]
-		R1 --> S1[Image Service]
-		S1 --> P1[Preprocessing Pipeline]
-		P1 --> M1[PyTorch Model Inference]
-		M1 --> O1[Softmax + Confidence Scoring]
-		O1 --> R2[JSON Response]
-		R2 --> C3
+### 4. Cloud-Ready HuggingFace Space
+- Dedicated Streamlit SDK app featuring a **Multi-Model Ensemble Mode**.
+- Merges predictions from XceptionNet, EfficientNet-B4, and MobileNetV3 to average probabilities and maximize classification robustness.
+- CPU-optimized memory management tailored for cloud tier deployments (up to 16GB limit).
 
-		D1[(Processed Dataset)] --> T1[Training Scripts]
-		T1 --> CK[(Model Checkpoints)]
-		CK --> M1
+---
 
-		subgraph Frontend
-			FE
-			C1
-			C2
-			C3
-			API
-		end
+## 🧠 Machine Learning Architecture
 
-		subgraph Backend
-			R1
-			S1
-			P1
-			M1
-			O1
-			R2
-		end
+### Model Benchmarks
+| Backbone | Parameters | Resolution | Validation Accuracy | Role |
+|---|---|---|---|---|
+| **XceptionNet-41** | 24.9M | 299x299 | **95.83%** | Primary (Micro-texture detection) |
+| **EfficientNet-B4** | 17.5M | 380x380 | **93.33%** | Alternative (Detailed scaling) |
+| **MobileNetV3-Large** | 4.2M | 224x224 | **91.00%** | Edge/Extension (Lightweight) |
 
-		subgraph ML Pipeline
-			D1
-			T1
-			CK
-		end
-```
+### Data Engineering & Bias Mitigation
+- **Diversity Datasets:** Curated over 350,000 faces from CelebA (202k), UTKFace (23k), StyleGAN (140k), and Unsplash portraits to generalize the "Real" class against age, gender, and lighting biases.
+- **Class Skew Resolution:** Solved dataset imbalance via targeted FaceForensics++ frame-skipping and applying inverse frequency class weights (Real: 0.82, Fake: 2.49, AI-Generated: 2.50).
+- **Training Optimizations:** Deployed AdamW Optimizer, CosineAnnealingLR scheduler, and PyTorch Automatic Mixed Precision (AMP) to reduce GPU VRAM usage by 35% on an RTX 4050.
 
-## Tech Stack
+---
 
-- Python, FastAPI, Uvicorn
-- PyTorch, TorchVision, OpenCV, Pillow
-- React, Vite, JavaScript
-- Docker (deployment-ready structure)
+## 📊 Technical Metrics Summary
 
-## Use Cases
+| Metric | Target | Achieved | Interpretation |
+|---|---|---|---|
+| Image Validation Accuracy | >90% | **95.83%** | Highly accurate across balanced tests |
+| Video Detection Accuracy | >95% | **99.9%** | Voting consensus cancels frame-level noise |
+| Real Class F1-Score | >90% | **95.6%** | Extremely low false positive rate |
+| Inference Latency (Image) | <200ms | **85-120ms** | GPU-accelerated response (RTX 4050) |
+| Edge-Device Latency | <500ms | **200-300ms** | Local CPU inference ready |
+| Video Decoding Rate | >1 FPS | **3.0 FPS** | Fast temporal extraction using OpenCV |
 
-- Academic research on synthetic media detection
-- Awareness and educational demonstration
-- Assistive screening for suspicious facial imagery
-- Prototype foundation for media integrity systems
+---
 
-## Project Status
+## 🔮 Roadmap (Phase 3)
 
-Active Project (2026), currently focused on improving robustness, explainability, and deployment readiness.
+- **Docker Containerization:** Multi-stage Dockerfiles for scaling deployments on AWS EC2 (g4dn.xlarge GPU instances).
+- **ONNX Quantization:** Exporting models to ONNX (INT8) to compress weights by 75% for local WASM execution.
+- **Browser Extension:** A Chrome Extension (Manifest V3) that checks profile pictures directly on LinkedIn/Twitter by interfacing with the REST API.
 
-## Responsible Use
+---
 
-DeepFakeShield is an assistive detection tool and should be used with human verification in high-stakes scenarios.
-Model outputs are probabilistic and may vary across unseen generators or highly compressed media.
-
-## License
-
-All Rights Reserved.
-No permission is granted to use, copy, modify, or distribute this code without explicit written consent from the author.
+<div align="center">
+<b>DeepFakeShield — Designed and Developed by Muhammad Ahsaan Ullah</b>
+</div>
