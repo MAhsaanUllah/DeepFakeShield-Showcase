@@ -11,10 +11,10 @@
 > **Note:** the deployed UI expects a backend at `http://127.0.0.1:8000` (the frontend's `VITE_API_BASE_URL` default) — the public backend at `20.2.18.40:8000` was not reachable at verification time, so end-to-end detection requires the local backend running. Screenshots below show the interface.
 
 ### Light Theme
-![Frontend Preview 1](screenshots/frontend_preview1.png)
+![Frontend Preview 1](frontend_preview1.png)
 
 ### Dark Theme
-![Frontend Preview 2](screenshots/frontend_preview2.png)
+![Frontend Preview 2](frontend_preview2.png)
 
 ---
 
